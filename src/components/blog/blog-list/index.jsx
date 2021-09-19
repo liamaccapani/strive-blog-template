@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import BlogItem from "../blog-item";
 // import posts from "../../../data/posts.json";
-import { fetchBlogPosts } from "../../utilities/functions";
+import { fetchBlogPosts } from "../../../utilities/postsFunctions.js";
 
 // fetch all posts here
 export default class BlogList extends Component {
@@ -12,8 +12,8 @@ export default class BlogList extends Component {
   
   getBlogPosts = async () => {
     const blogPosts = await fetchBlogPosts()
-    // fill state with fetched posts
-    this.setState()
+    this.setState({ posts: blogPosts})
+    console.log("State of BlogList Component: ", this.state)
   }
 
   componentDidMount = () => {
@@ -23,7 +23,7 @@ export default class BlogList extends Component {
   render() {
     return (
       <Row>
-        {posts.map((post) => (
+        {this.state.posts.map((post) => (
           <Col md={4} style={{ marginBottom: 50 }}>
             <BlogItem key={post.title} {...post} />
           </Col>
