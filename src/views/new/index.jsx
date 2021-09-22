@@ -21,15 +21,15 @@ export default class NewBlogPost extends Component {
     e.preventDefault();
     const contentData = {
       category: this.state.category,
-      title: this.state.category,
-      cover: "",
+      title: this.state.title,
+      cover: "https://coursereport-production.imgix.net/uploads/school/logo/1045/original/Strive_-_logosquareblack.png?w=200&h=200&dpr=1&q=75",
       readTime: {
         value: 0,
         unit: "minute",
       },
       author: {
         name: "Lia",
-        avatar: ""
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEvXostrz6h-nZWrS1Nw55GtaDzGfQDkug5rSASlE3Unuml1sSj9LK6xD9lHhCDuSAXyQ&usqp=CAU",
       },
       content: this.state.text
     }
@@ -42,11 +42,19 @@ export default class NewBlogPost extends Component {
         <Form className="mt-5" onSubmit={this.addNewPost}>
           <Form.Group controlId="blog-form" className="mt-3">
             <Form.Label>Title</Form.Label>
-            <Form.Control size="lg" placeholder="Title" onChange={(e)=>this.handleChange({title: e.target.value})} />
+            <Form.Control
+              size="lg"
+              placeholder="Title"
+              onChange={(e) => this.setState({ title: e.target.value })}
+            />
           </Form.Group>
           <Form.Group controlId="blog-category" className="mt-3">
             <Form.Label>Category</Form.Label>
-            <Form.Control size="lg" as="select" onChange={(e)=>this.handleChange({category: e.target.value})}>
+            <Form.Control
+              size="lg"
+              as="select"
+              onChange={(e) => this.setState({ category: e.target.value })}
+            >
               <option>Category1</option>
               <option>Category2</option>
               <option>Category3</option>
@@ -60,7 +68,6 @@ export default class NewBlogPost extends Component {
               value={this.state.text}
               onChange={this.handleChange}
               className="new-blog-content"
-              
             />
           </Form.Group>
           <Form.Group className="d-flex mt-3 justify-content-end">
