@@ -9,45 +9,44 @@ import { createNewPost } from "../../utilities/postsFunctions";
 export default class NewBlogPost extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      category: "",
-      title: "",
-      cover: "",
-      readTime: {
-        value: 0,
-        unit: "",
-      },
-      author: {
-        name: "",
-        avatar: "",
-      },
-      content: ""
-    };
+    this.state = { text: "", title: "", category: "" };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(value) {
     this.setState({ text: value });
-    // this.setState({...state});
-    // console.log(this.state)
   }
 
-  // addNewPost = (e) => {
-  //   e.preventDefault();
-  //   // const newPostData = await createNewPost(content);
-  // };
+  addNewPost = async (e) => {
+    e.preventDefault();
+    const contentData = {
+      category: this.state.category,
+      title: this.state.category,
+      cover: "",
+      readTime: {
+        value: 0,
+        unit: "minute",
+      },
+      author: {
+        name: "Lia",
+        avatar: ""
+      },
+      content: this.state.text
+    }
+    await createNewPost(contentData);
+  };
 
   render() {
     return (
       <Container className="new-blog-container">
-        <Form className="mt-5" >
+        <Form className="mt-5" onSubmit={this.addNewPost}>
           <Form.Group controlId="blog-form" className="mt-3">
             <Form.Label>Title</Form.Label>
-            <Form.Control size="lg" placeholder="Title" onChange={(e)=>this.handleChange(e.target.value)} />
+            <Form.Control size="lg" placeholder="Title" onChange={(e)=>this.handleChange({title: e.target.value})} />
           </Form.Group>
           <Form.Group controlId="blog-category" className="mt-3">
             <Form.Label>Category</Form.Label>
-            <Form.Control size="lg" as="select" >
+            <Form.Control size="lg" as="select" onChange={(e)=>this.handleChange({category: e.target.value})}>
               <option>Category1</option>
               <option>Category2</option>
               <option>Category3</option>
@@ -60,7 +59,6 @@ export default class NewBlogPost extends Component {
             <ReactQuill
               value={this.state.text}
               onChange={this.handleChange}
-              // onChange={(e)=>this.handleChange(e.target.value)}
               className="new-blog-content"
               
             />
