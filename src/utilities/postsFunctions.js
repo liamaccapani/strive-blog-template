@@ -1,5 +1,6 @@
-// GET all 
 const base_URL = "http://localhost:3001/blogPosts/"
+
+// GET all 
 export const fetchBlogPosts = async () => {
     try {
         const response = await fetch(base_URL)

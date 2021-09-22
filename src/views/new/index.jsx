@@ -27,9 +27,9 @@ export default class NewBlogPost extends Component {
   }
 
   handleChange(value) {
-    // this.setState({ text: value });
+    this.setState({ text: value });
     // this.setState({...state});
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   // addNewPost = (e) => {
@@ -58,8 +58,8 @@ export default class NewBlogPost extends Component {
           <Form.Group controlId="blog-content" className="mt-3">
             <Form.Label>Blog Content</Form.Label>
             <ReactQuill
-              // value={this.state.text}
-              // onChange={this.handleChange}
+              value={this.state.text}
+              onChange={this.handleChange}
               // onChange={(e)=>this.handleChange(e.target.value)}
               className="new-blog-content"
               

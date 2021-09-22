@@ -33,7 +33,6 @@ class Blog extends Component {
     this.setState({blog: blogPost, loading: false})
   }
 
-
   render() {
     const { loading, blog } = this.state;
     if (loading) {
