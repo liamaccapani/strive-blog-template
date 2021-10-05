@@ -1,9 +1,10 @@
-const base_URL = "http://localhost:3001/blogPosts/"
+// const base_URL = "http://localhost:3001/blogPosts"
+// http://localhost:3001/blogPosts
 
 // GET all 
 export const fetchBlogPosts = async () => {
     try {
-        const response = await fetch(base_URL)
+        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL + "/blogPosts")
         if(response.ok){
             const data = await response.json()
             return data
@@ -18,7 +19,7 @@ export const fetchBlogPosts = async () => {
 // GET by id
 export const fetchPostById = async (postId) => {
     try {
-        const response = await fetch(base_URL+postId)
+        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL + `/blogPosts/${postId}`)
         if(response.ok){
             const data = await response.json()
             return data
@@ -34,7 +35,7 @@ export const fetchPostById = async (postId) => {
 // POST new one
 export const createNewPost = async (content) => {
     try {
-        const response = await fetch(base_URL, {
+        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL + "/blogPosts", {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {
