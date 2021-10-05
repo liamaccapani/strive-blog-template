@@ -31,6 +31,14 @@ export const fetchPostById = async (postId) => {
     }
 }
 
+// PUT
+// export const modifyPost = async (postId) => {
+//     try {
+        
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 // POST new one
 export const createNewPost = async (content) => {
