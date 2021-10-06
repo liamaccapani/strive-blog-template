@@ -4,7 +4,7 @@
 // GET all 
 export const fetchBlogPosts = async () => {
     try {
-        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL + "/blogPosts")
+        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL)
         if(response.ok){
             const data = await response.json()
             return data
@@ -19,7 +19,7 @@ export const fetchBlogPosts = async () => {
 // GET by id
 export const fetchPostById = async (postId) => {
     try {
-        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL + `/blogPosts/${postId}`)
+        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL + "/" + postId)
         if(response.ok){
             const data = await response.json()
             return data
@@ -43,7 +43,7 @@ export const fetchPostById = async (postId) => {
 // POST new one
 export const createNewPost = async (content) => {
     try {
-        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL + "/blogPosts", {
+        const response = await fetch(process.env.REACT_APP_BE_LOCAL_URL, {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {
